@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { NotesService } from './notes.service';
 import { NoteDto } from './note.dto';
 import { Note } from './note.schema';
@@ -16,5 +16,10 @@ export class NotesController {
   @Get()
   async findAll() {
     return this.notesService.findAll();
+  }
+
+  @Get(':id')
+  async findById(@Param() param) {
+    return this.notesService.findById(param.id)
   }
 }

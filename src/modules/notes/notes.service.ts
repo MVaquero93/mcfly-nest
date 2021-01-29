@@ -15,4 +15,8 @@ export class NotesService {
   async findAll() {
     return this.noteModel.find()
   }
+
+  async findById(id) {
+    return this.noteModel.findById(id)
+  }
 }
