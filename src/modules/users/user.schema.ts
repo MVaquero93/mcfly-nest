@@ -14,7 +14,7 @@ export class User {
   surname: string;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }] })
-  favouriteNotes: Note[];
+  favoriteNotes: Note[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

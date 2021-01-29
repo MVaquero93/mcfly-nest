@@ -8,7 +8,6 @@ import { NoteSchema } from './note.schema';
   controllers: [NotesController],
   providers: [NotesService],
   imports: [
-    NotesModule,
     MongooseModule.forFeature([{ name: 'Note', schema: NoteSchema }]),
   ]
 })
