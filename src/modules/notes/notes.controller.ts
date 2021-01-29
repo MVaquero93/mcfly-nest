@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { NotesService } from './notes.service';
 import { NoteDto } from './note.dto';
 import { Note } from './note.schema';
@@ -10,7 +10,11 @@ export class NotesController {
 
   @Post()
   async create(@Body('notes') notes: NoteDto[]) {
-    const result = await this.notesService.create(notes);
-    return result
+    return this.notesService.create(notes);
+  }
+
+  @Get()
+  async findAll() {
+    return this.notesService.findAll();
   }
 }

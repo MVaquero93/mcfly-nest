@@ -11,4 +11,8 @@ export class NotesService {
   async create(notes: Note[]) {
     return this.noteModel.insertMany(notes);
   }
+
+  async findAll() {
+    return this.noteModel.find()
+  }
 }
