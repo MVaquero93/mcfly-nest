@@ -1,18 +1,28 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NotesController } from './notes.controller';
+import { NotesService } from './notes.service';
+import { Note, NoteDocument } from './note.schema';
 
 describe('NotesController', () => {
-  let controller: NotesController;
+  let notesController: NotesController;
+  let notesService: NotesService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const module = await Test.createTestingModule({
       controllers: [NotesController],
+      providers: [NotesService],
     }).compile();
 
-    controller = module.get<NotesController>(NotesController);
+    notesController = module.get<NotesController>(NotesController);
+    notesService = module.get<NotesService>(NotesService);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  describe('findAll', () => {
+    it('should return an array of notes', async () => {
+      const result = [{text: 'this is a note'}, {text: 'another note'}];
+      jest.spyOn(notesService, 'findAll').mockImplementation( () => Promise.resolve(result)) ;
+
+      expect(await notesController.findAll()).toBe(result);
+    });
   });
 });
